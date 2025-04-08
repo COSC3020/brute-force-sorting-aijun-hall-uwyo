@@ -43,7 +43,7 @@ function permutationSort(array) {
             if (index % 2 == 0) {
                 swapIndex = 0;
             } else {
-                swapIndex = counter_array[index]
+                swapIndex = counter_array[index];
             }
 
             // Swap
