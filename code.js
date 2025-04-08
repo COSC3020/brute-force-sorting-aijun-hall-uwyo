@@ -14,31 +14,23 @@ function permutationSort(array) {
         return 0;
     }
 
-    let array_copy = [];
-    for (let index = 0; index < array.length; index++) {
-        array_copy[index] = array[index];
-    }
-
     let permutation_count = 1;
     let counter_array = [];
 
     // Initialize the Counter Array with all 0s
-    for (let index = 0; index < array_copy.length; index++) {
+    for (let index = 0; index < array.length; index++) {
         counter_array[index] = 0;
     }
 
     // Check if input is already sorted,
     // if yes then return only 1 permutation count
-    if (isSorted(array_copy)) {
-        for (let index = 0; index < array.length; index++) {
-            array[index] = array_copy[index];
-        }
+    if (isSorted(array)) {
         return permutation_count;
     }
 
     // Start permutations with Heap's Algorithm
     let index = 0;
-    while (index < array_copy.length) {
+    while (index < array.length) {
         // Loop until all permutations have bene generated
 
         // Determine whether a swap should be performed at this current index
@@ -55,20 +47,14 @@ function permutationSort(array) {
             }
 
             // Swap
-            let temp = array_copy[swapIndex];
-            array_copy[swapIndex] = array_copy[index];
-            array_copy[index] = temp;
+            let temp = array[swapIndex];
+            array[swapIndex] = array[index];
+            array[index] = temp;
 
             permutation_count = permutation_count + 1;
 
             // Check if we've landed on the proper sorted array state
-            if (isSorted(array_copy)) {
-                // Copy sorted permutation back into original array
-                for (let j_index = 0; j_index < array.length; j_index++) {
-                    array[j_index] = array_copy[j_index];
-                }
-
-                // -- ALL PERMUTATIONS COUNTED HERE, RETURN VALUE --
+            if (isSorted(array)) {
                 return permutation_count;
             }
 
