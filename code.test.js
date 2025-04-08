@@ -5,9 +5,9 @@ eval(fs.readFileSync('code.js')+'');
 
 // Test 1: Check permutations returned is more than 0, and that the array state is sorted
 const testPermutationsMoreThanZero =
-    jsc.forall("array nat", function(arr) {
-        var a1 = JSON.parse(JSON.stringify(arr));
-        var a2 = JSON.parse(JSON.stringify(arr));
+    jsc.forall("array nat", function(a1) {
+        var a1 = JSON.parse(JSON.stringify(a1));
+        var a2 = JSON.parse(JSON.stringify(a1));
         var count = permutationSort(a1);
         return count >= 0 && JSON.stringify(a1) == JSON.stringify(a2.sort(function(a, b) { return a - b; }));
     });
@@ -37,10 +37,10 @@ const testWorstCase = jsc.forall("bool", function(_) {
 });
 
 jsc.assert(testPermutationsMoreThanZero);
-console.log('testPermutationsMoreThanZero Passed.')
+console.log('testPermutationsMoreThanZero Passed.');
 jsc.assert(testEmptyArray);
-console.log('testEmpty Passed.')
+console.log('testEmpty Passed.');
 jsc.assert(testKnownCase);
-console.log('testKnownCase Passed.')
+console.log('testKnownCase Passed.');
 jsc.assert(testWorstCase);
-console.log('testWorstCase Passed.')
+console.log('testWorstCase Passed.');
